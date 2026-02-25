@@ -1,53 +1,30 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-<title>File Upload</title>
+  <title>File Upload</title>
 </head>
-
 <body>
 
 <h2>Upload File</h2>
 
-<form id="form">
-
-<input type="file" id="file">
-
-<button type="submit">
-Upload
-</button>
-
+<form id="form" enctype="multipart/form-data">
+  <input type="file" id="file">
+  <button type="submit">Upload</button>
 </form>
 
 <script>
-
-document.getElementById("form")
-.addEventListener("submit",async(e)=>{
-
-e.preventDefault();
-
-let fileInput =
-document.getElementById("file");
-
-let data =
-new FormData();
-
-data.append("file",
-fileInput.files[0]);
-
-await fetch(
-"https://devops-file-app.onrender.com/upload",
-{
-method:"POST",
-body:data
+document.getElementById("form").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  let fileInput = document.getElementById("file");
+  let data = new FormData();
+  data.append("file", fileInput.files[0]);
+  await fetch("https://devops-file-app.onrender.com/upload", {
+    method: "POST",
+    body: data
+  });
+  alert("Uploaded");
 });
-
-alert("Uploaded");
-
-});
-
 </script>
 
 </body>
-
 </html>
